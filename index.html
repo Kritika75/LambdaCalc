@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ΛambdaCalc - Advanced Math Calculator</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <h1 class="logo">
+                    <i class="fas fa-calculator"></i>
+                    ΛambdaCalc
+                </h1>
+                <div class="theme-toggle">
+                    <button id="theme-toggle" class="theme-btn" aria-label="Toggle theme">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Calculator Interface -->
+        <main class="main-content">
+            <div class="calculator-container">
+                <!-- Display Area -->
+                <div class="display-section">
+                    <div class="display">
+                        <div class="display-history" id="display-history"></div>
+                        <div class="display-current" id="display-current">0</div>
+                    </div>
+                </div>
+
+                <!-- Mode Selector -->
+                <div class="mode-selector">
+                    <button class="mode-btn active" data-mode="basic">Basic</button>
+                    <button class="mode-btn" data-mode="scientific">Scientific</button>
+                    <button class="mode-btn" data-mode="matrix">Matrix</button>
+                    <button class="mode-btn" data-mode="calculus">Calculus</button>
+                </div>
+
+                <!-- Calculator Grid -->
+                <div class="calculator-grid">
+                    <!-- Basic Calculator -->
+                    <div class="calc-mode active" id="basic-calc">
+                        <div class="button-row">
+                            <button class="calc-btn function-btn" data-action="clear">C</button>
+                            <button class="calc-btn function-btn" data-action="clear-entry">CE</button>
+                            <button class="calc-btn function-btn" data-action="backspace">
+                                <i class="fas fa-backspace"></i>
+                            </button>
+                            <button class="calc-btn operator-btn" data-operator="/">÷</button>
+                        </div>
+                        <div class="button-row">
+                            <button class="calc-btn number-btn" data-number="7">7</button>
+                            <button class="calc-btn number-btn" data-number="8">8</button>
+                            <button class="calc-btn number-btn" data-number="9">9</button>
+                            <button class="calc-btn operator-btn" data-operator="*">×</button>
+                        </div>
+                        <div class="button-row">
+                            <button class="calc-btn number-btn" data-number="4">4</button>
+                            <button class="calc-btn number-btn" data-number="5">5</button>
+                            <button class="calc-btn number-btn" data-number="6">6</button>
+                            <button class="calc-btn operator-btn" data-operator="-">−</button>
+                        </div>
+                        <div class="button-row">
+                            <button class="calc-btn number-btn" data-number="1">1</button>
+                            <button class="calc-btn number-btn" data-number="2">2</button>
+                            <button class="calc-btn number-btn" data-number="3">3</button>
+                            <button class="calc-btn operator-btn" data-operator="+">+</button>
+                        </div>
+                        <div class="button-row">
+                            <button class="calc-btn number-btn wide" data-number="0">0</button>
+                            <button class="calc-btn number-btn" data-number=".">.</button>
+                            <button class="calc-btn equals-btn" data-action="equals">=</button>
+                        </div>
+                    </div>
+
+                    <!-- Scientific Calculator -->
+                    <div class="calc-mode" id="scientific-calc">
+                        <div class="button-row">
+                            <button class="calc-btn function-btn" data-action="clear">C</button>
+                            <button class="calc-btn function-btn" data-action="clear-entry">CE</button>
+                            <button class="calc-btn function-btn" data-action="backspace">
+                                <i class="fas fa-backspace"></i>
+                            </button>
+                            <button class="calc-btn operator-btn" data-operator="/">÷</button>
+                        </div>
+                        <div class="button-row">
+                            <button class="calc-btn function-btn" data-function="sin">sin</button>
+                            <button class="calc-btn function-btn" data-function="cos">cos</button>
+                            <button class="calc-btn function-btn" data-function="tan">tan</button>
+                            <button class="calc-btn operator-btn" data-operator="*">×</button>
+                        </div>
+                        <div class="button-row">
+                            <button class="calc-btn function-btn" data-function="log">log</button>
+                            <button class="calc-btn function-btn" data-function="ln">ln</button>
+                            <button class="calc-btn function-btn" data-function="sqrt">√</button>
+                            <button class="calc-btn operator-btn" data-operator="-">−</button>
+                        </div>
+                        <div class="button-row">
+                            <button class="calc-btn function-btn" data-function="pow">x²</button>
+                            <button class="calc-btn function-btn" data-function="exp">eˣ</button>
+                            <button class="calc-btn function-btn" data-function="pi">π</button>
+                            <button class="calc-btn operator-btn" data-operator="+">+</button>
+                        </div>
+                        <div class="button-row">
+                            <button class="calc-btn number-btn" data-number="(">(</button>
+                            <button class="calc-btn number-btn" data-number="0">0</button>
+                            <button class="calc-btn number-btn" data-number=")">)</button>
+                            <button class="calc-btn equals-btn" data-action="equals">=</button>
+                        </div>
+                    </div>
+
+                    <!-- Matrix Calculator -->
+                    <div class="calc-mode" id="matrix-calc">
+                        <div class="matrix-input-section">
+                            <h3>Matrix Operations</h3>
+                            <div class="matrix-inputs">
+                                <div class="matrix-input">
+                                    <label>Matrix A:</label>
+                                    <textarea id="matrix-a" placeholder="Enter matrix A (e.g., [[1,2],[3,4]])"></textarea>
+                                </div>
+                                <div class="matrix-input">
+                                    <label>Matrix B:</label>
+                                    <textarea id="matrix-b" placeholder="Enter matrix B (e.g., [[5,6],[7,8]])"></textarea>
+                                </div>
+                            </div>
+                            <div class="matrix-operations">
+                                <button class="calc-btn matrix-btn" data-operation="add">A + B</button>
+                                <button class="calc-btn matrix-btn" data-operation="multiply">A × B</button>
+                                <button class="calc-btn matrix-btn" data-operation="inverse">A⁻¹</button>
+                                <button class="calc-btn matrix-btn" data-operation="determinant">det(A)</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Calculus Calculator -->
+                    <div class="calc-mode" id="calculus-calc">
+                        <div class="calculus-input-section">
+                            <h3>Calculus Operations</h3>
+                            <div class="calculus-inputs">
+                                <div class="input-group">
+                                    <label>Function:</label>
+                                    <input type="text" id="function-input" placeholder="e.g., x^2 + 3*x + 1">
+                                </div>
+                                <div class="input-group">
+                                    <label>Variable:</label>
+                                    <input type="text" id="variable-input" value="x" placeholder="x">
+                                </div>
+                            </div>
+                            <div class="calculus-operations">
+                                <button class="calc-btn calculus-btn" data-operation="differentiate">Differentiate</button>
+                                <button class="calc-btn calculus-btn" data-operation="integrate">Integrate</button>
+                                <button class="calc-btn calculus-btn" data-operation="limit">Limit</button>
+                            </div>
+                            <div class="limit-inputs" id="limit-inputs" style="display: none;">
+                                <div class="input-group">
+                                    <label>Point:</label>
+                                    <input type="text" id="limit-point" placeholder="e.g., 0, inf, -inf">
+                                </div>
+                                <div class="input-group">
+                                    <label>Direction:</label>
+                                    <select id="limit-direction">
+                                        <option value="+">Right (+)</option>
+                                        <option value="-">Left (-)</option>
+                                        <option value="">Both</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Results Panel -->
+            <div class="results-panel">
+                <h3>Results</h3>
+                <div class="results-content" id="results-content">
+                    <p class="no-results">No calculations yet. Start by entering some numbers!</p>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>&copy; 2024 ΛambdaCalc - Advanced Math Calculator | Built with ❤️ for GSSoC'25</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
