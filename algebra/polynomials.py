@@ -49,6 +49,19 @@ class Polynomial:
         return Polynomial(quotient), Polynomial(remainder)
 
 
+def add_polynomials(p1, p2):
+    """Add two polynomials represented as coefficient lists."""
+    return list(np.polyadd(p1, p2))
+
+def multiply_polynomials(p1, p2):
+    """Multiply two polynomials represented as coefficient lists."""
+    return list(np.polymul(p1, p2))
+
+def integrate_expression(expr_str):
+    """Simple wrapper for integration."""
+    from .integration import indefinite_integral
+    return indefinite_integral(expr_str)
+
 # Example usage
 if __name__ == "__main__":
     p1 = Polynomial([1, 0, -2])  # x^2 - 2
